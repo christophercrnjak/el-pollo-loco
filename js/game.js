@@ -1,14 +1,10 @@
 let canvas;
 let ctx;
-let character = new MovableObject();
+let world;
 
 function init() {
   canvas = document.getElementById("canvas");
-  ctx = canvas.getContext("2d");
+  world = new World(canvas);
 
-  character.src = "../img/2_character_pepe/1_idle/idle/I-1.png";
-
-  setTimeout(() => {
-    ctx.drawImage(character, 20, 20, 50, 150);
-  }, 20);
+  console.log("My character is", world.character);
 }
