@@ -11,23 +11,23 @@ window.addEventListener("keydown", (e) => {
   switch (e.key) {
     case "ArrowUp":
       keyboard.UP = true;
-      console.log("ArrowUp auf true");
+      // console.log("ArrowUp auf true");
       break;
     case "ArrowDown":
       keyboard.DOWN = true;
-      console.log("ArrowDown auf true");
+      // console.log("ArrowDown auf true");
       break;
     case "ArrowLeft":
       keyboard.LEFT = true;
-      console.log("ArrowLeft auf true");
+      // console.log("ArrowLeft auf true");
       break;
     case "ArrowRight":
       keyboard.RIGHT = true;
-      console.log("ArrowRight auf true");
+      // console.log("ArrowRight auf true");
       break;
     case " ":
       keyboard.SPACE = true;
-      console.log("Space auf true");
+      // console.log("Space auf true");
       break;
     default:
       break;
@@ -38,23 +38,23 @@ window.addEventListener("keyup", (e) => {
   switch (e.key) {
     case "ArrowUp":
       keyboard.UP = false;
-      console.log("ArrowUp wieder auf false");
+      // console.log("ArrowUp wieder auf false");
       break;
     case "ArrowDown":
       keyboard.DOWN = false;
-      console.log("ArrowDown wieder auf false");
+      // console.log("ArrowDown wieder auf false");
       break;
     case "ArrowLeft":
       keyboard.LEFT = false;
-      console.log("ArrowLeft wieder auf false");
+      // console.log("ArrowLeft wieder auf false");
       break;
     case "ArrowRight":
       keyboard.RIGHT = false;
-      console.log("ArrowRight wieder auf false");
+      // console.log("ArrowRight wieder auf false");
       break;
     case " ":
       keyboard.SPACE = false;
-      console.log("Space wieder auf false");
+      // console.log("Space wieder auf false");
       break;
     default:
       break;
