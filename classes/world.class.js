@@ -5,6 +5,7 @@ class World {
   ctx;
   keyboard;
   camera_x = 0;
+  chicken_sound = new Audio("./audio/chicken.mp3");
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -12,6 +13,7 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
+    this.chicken_sound.play();
   }
 
   setWorld() {
