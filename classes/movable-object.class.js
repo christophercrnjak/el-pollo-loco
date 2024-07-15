@@ -5,7 +5,7 @@ class MovableObject {
   height = 200;
   width = 100;
   imageCache = [];
-  speed = 0.3;
+  speed = 1.5;
   otherDirection = false;
   speedY = 0;
   acceleration = 1.5;
@@ -24,12 +24,15 @@ class MovableObject {
     });
   }
 
-  moveRight() {}
+  moveRight() {
+    this.x += this.speed;
+    this.otherDirection = false;
+  }
 
-  moveLeft() {
-    setInterval(() => {
-      this.x -= this.speed;
-    }, 1000 / 60);
+  moveLeft(otherDirection) {
+    this.x -= this.speed;
+    this.otherDirection = otherDirection;
+    // this.walking_sound.play();
   }
 
   playAnimation(images) {
@@ -67,5 +70,9 @@ class MovableObject {
 
   isAboveGround() {
     return this.y < 185;
+  }
+
+  jump() {
+    this.speedY = 25;
   }
 }
