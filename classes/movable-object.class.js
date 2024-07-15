@@ -24,15 +24,31 @@ class MovableObject {
     });
   }
 
+  draw(ctx) {
+    ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+  }
+
+  drawBorder(ctx) {
+    if (
+      this instanceof Character ||
+      this instanceof Chicken ||
+      this instanceof Endboss
+    ) {
+      ctx.beginPath();
+      ctx.lineWidth = "2";
+      ctx.strokeStyle = "blue";
+      ctx.rect(this.x, this.y, this.width, this.height);
+      ctx.stroke();
+    }
+  }
+
   moveRight() {
     this.x += this.speed;
     this.otherDirection = false;
   }
 
-  moveLeft(otherDirection) {
+  moveLeft() {
     this.x -= this.speed;
-    this.otherDirection = otherDirection;
-    // this.walking_sound.play();
   }
 
   playAnimation(images) {
@@ -74,5 +90,30 @@ class MovableObject {
 
   jump() {
     this.speedY = 25;
+  }
+
+  testCheckCollision() {
+    if (
+      (character.x + character.width > enemy.x &&
+        character.y + character.height > enemy.y &&
+        character.x < enemy.x &&
+        character.y < enemy.y + chicken.height) ||
+      (character.x < enemy.x + enemy.width &&
+        character.y < enemy.y + enemy.height &&
+        character.x + character.width > enemy.x &&
+        character.y + character.height > enemy.y)
+    ) {
+      // do something
+    }
+  }
+
+  isColliding(obj) {
+    return (
+      this.X + this.width >= obj.X &&
+      this.X <= obj.X + obj.width &&
+      this.Y + this.offsetY + this.height >= obj.Y &&
+      this.Y + this.offsetY <= obj.Y + obj.height &&
+      obj.onCollisionCourse
+    ); // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
   }
 }

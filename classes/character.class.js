@@ -21,7 +21,7 @@ class Character extends MovableObject {
 
   height = 250;
   y = 185; //185
-  speed = 1;
+  speed = 3;
   currentImage = 0;
   world;
   walking_sound = new Audio("./audio/running.mp3");
@@ -45,11 +45,12 @@ class Character extends MovableObject {
       this.walking_sound.pause();
       if (this.world.keyboard.LEFT && this.x > 0) {
         this.otherDirection = true;
-        this.moveLeft(this.otherDirection);
+        this.moveLeft();
         this.walking_sound.play();
       }
 
       if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+        this.otherDirection = false;
         this.moveRight();
         this.walking_sound.play();
       }
