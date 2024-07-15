@@ -10,6 +10,7 @@ class MovableObject {
   speedY = 0;
   acceleration = 1.5;
   jumpStarted = false;
+  energy = 100;
 
   loadImage(path) {
     this.img = new Image();
@@ -78,7 +79,7 @@ class MovableObject {
 
   checkIfJumping() {
     setInterval(() => {
-      if ((this.y = 185)) {
+      if (this.y === 185) {
         this.started = false;
       }
     }, 100 / 50);
@@ -109,11 +110,20 @@ class MovableObject {
 
   isColliding(obj) {
     return (
-      this.X + this.width >= obj.X &&
-      this.X <= obj.X + obj.width &&
-      this.Y + this.offsetY + this.height >= obj.Y &&
-      this.Y + this.offsetY <= obj.Y + obj.height &&
-      obj.onCollisionCourse
-    ); // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
+      this.x + this.width > obj.x &&
+      this.y + this.height > obj.y &&
+      this.x < obj.x &&
+      this.y < obj.y + obj.height
+
+      // this.x + this.width >= obj.x &&
+      // this.x <= obj.x + obj.width &&
+      // this.y + this.offsetY + this.height >= obj.y &&
+      // this.y + this.offsetY <= obj.y + obj.height &&
+      // obj.onCollisionCourse // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
+    );
+  }
+
+  isDead() {
+    return this.energy <= 0;
   }
 }
