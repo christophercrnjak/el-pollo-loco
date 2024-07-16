@@ -13,7 +13,6 @@ class World {
     this.draw();
     this.setWorld();
     this.checkCollisions();
-    this.checkDeathStatus();
   }
 
   setWorld() {
@@ -23,22 +22,14 @@ class World {
   checkCollisions() {
     setInterval(() => {
       this.level.enemies.forEach((enemy) => {
-        if (this.character.isColliding(enemy)) {
-          this.character.energy -= 5;
+        if (this.character.isColliding(enemy) && this.character.energy > 0) {
+          this.character.hit();
           console.log(
             "Collision with Character, energy: ",
             this.character.energy
           );
         }
       });
-    }, 200);
-  }
-
-  checkDeathStatus() {
-    setInterval(() => {
-      if (this.character.isDead()) {
-        console.log("Character is dead!");
-      }
     }, 200);
   }
 

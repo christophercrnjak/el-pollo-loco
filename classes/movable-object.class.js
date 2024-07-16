@@ -11,6 +11,7 @@ class MovableObject {
   acceleration = 1.5;
   jumpStarted = false;
   energy = 100;
+  dead = false;
 
   loadImage(path) {
     this.img = new Image();
@@ -89,6 +90,10 @@ class MovableObject {
     return this.y < 185;
   }
 
+  isWalking() {
+    return this.world.keyboard.RIGHT || this.world.keyboard.LEFT;
+  }
+
   jump() {
     this.speedY = 25;
   }
@@ -123,7 +128,15 @@ class MovableObject {
     );
   }
 
+  hit() {
+    this.energy -= 5;
+  }
+
+  isHurt() {
+    //
+  }
+
   isDead() {
-    return this.energy <= 0;
+    return this.energy <= 0 && this.dead == false;
   }
 }
