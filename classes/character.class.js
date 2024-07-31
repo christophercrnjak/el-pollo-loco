@@ -39,6 +39,14 @@ class Character extends MovableObject {
   currentImage = 0;
   world;
   walking_sound = new Audio("./audio/running.mp3");
+  offset = {
+    left: 114,
+    top: 280,
+    right: 64,
+    bottom: 144,
+  };
+  isDeadAnimationPlaying = false;
+  isHurtAnimationPlaying = false;
 
   constructor() {
     super();
@@ -83,12 +91,24 @@ class Character extends MovableObject {
       if (this.isDead()) {
         console.log("Character is dead!");
         this.playAnimation(this.IMAGES_DYING);
-      } else if (this.isAboveGround()) {
+        this.isDeadAnimationPlaying = true;
+      } else if (this.isHurt() && !this.isHurtAnimationPlaying) {
+        this.playHurtAnimation();
+      } else if (!this.isDead() && this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
-      } else if (this.isWalking()) {
+      } else if (!this.isDead() && this.isWalking()) {
         this.playAnimation(this.IMAGES_WALKING);
       }
     }, 1000 / 20);
+  }
+
+  playHurtAnimation() {
+    this.isHurtAnimationPlaying = true;
+    this.playAnimation(this.IMAGES_HURTING);
+    setTimeout(() => {
+      this.loadImage("./img/2_character_pepe/1_idle/idle/I-1.png");
+      this.isHurtAnimationPlaying = false;
+    }, this.IMAGES_HURTING.length * 50); // Setze die Verzögerung entsprechend der Dauer der Hurt-Animation
   }
 
   isWalkingLeft() {

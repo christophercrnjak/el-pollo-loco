@@ -15,24 +15,6 @@ class World {
     this.checkCollisions();
   }
 
-  setWorld() {
-    this.character.world = this;
-  }
-
-  checkCollisions() {
-    setInterval(() => {
-      this.level.enemies.forEach((enemy) => {
-        if (this.character.isColliding(enemy)) {
-          this.character.hit();
-          console.log(
-            "Collision with Character, energy: ",
-            this.character.energy
-          );
-        }
-      });
-    }, 200);
-  }
-
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -65,6 +47,7 @@ class World {
     mo.draw(this.ctx);
 
     mo.drawBorder(this.ctx);
+    mo.drawOffsetBorder(this.ctx);
 
     if (mo.otherDirection) {
       this.flipImageBack(mo);
@@ -81,5 +64,26 @@ class World {
   flipImageBack(mo) {
     mo.x = mo.x * -1;
     this.ctx.restore();
+  }
+
+  setWorld() {
+    this.character.world = this;
+  }
+
+  checkCollisions() {
+    setInterval(() => {
+      this.level.enemies.forEach((enemy) => {
+        if (
+          this.character.isColliding(enemy) &&
+          !this.character.isDeadAnimationPlaying
+        ) {
+          this.character.hit();
+          console.log(
+            "Collision with Character, energy: ",
+            this.character.energy
+          );
+        }
+      });
+    }, 200);
   }
 }

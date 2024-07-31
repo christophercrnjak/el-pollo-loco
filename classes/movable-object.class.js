@@ -11,6 +11,14 @@ class MovableObject {
   acceleration = 1.5;
   jumpStarted = false;
   energy = 100;
+  offset = {
+    left: 0,
+    top: 0,
+    right: 0,
+    bottom: 0,
+  };
+  lastHit = 0;
+  lifebar = 100;
 
   loadImage(path) {
     this.img = new Image();
@@ -39,6 +47,21 @@ class MovableObject {
       ctx.lineWidth = "2";
       ctx.strokeStyle = "blue";
       ctx.rect(this.x, this.y, this.width, this.height);
+      ctx.stroke();
+    }
+  }
+
+  drawOffsetBorder(ctx) {
+    if (this instanceof Character) {
+      ctx.beginPath();
+      ctx.lineWidth = "2";
+      ctx.strokeStyle = "red";
+      ctx.rect(
+        this.offset.left,
+        this.offset.top,
+        this.offset.right,
+        this.offset.bottom
+      );
       ctx.stroke();
     }
   }
@@ -97,21 +120,6 @@ class MovableObject {
     this.speedY = 25;
   }
 
-  testCheckCollision() {
-    if (
-      (character.x + character.width > enemy.x &&
-        character.y + character.height > enemy.y &&
-        character.x < enemy.x &&
-        character.y < enemy.y + chicken.height) ||
-      (character.x < enemy.x + enemy.width &&
-        character.y < enemy.y + enemy.height &&
-        character.x + character.width > enemy.x &&
-        character.y + character.height > enemy.y)
-    ) {
-      // do something
-    }
-  }
-
   isColliding(obj) {
     return (
       this.x + this.width > obj.x &&
@@ -119,9 +127,9 @@ class MovableObject {
       this.x < obj.x &&
       this.y < obj.y + obj.height
 
-      // this.x + this.width >= obj.x &&
+      // this.x + this.width - this.offset.right > obj.x // + obj.offset.left &&
+      // this.y + this.height - this.offset.bottom>= obj.y &&
       // this.x <= obj.x + obj.width &&
-      // this.y + this.offsetY + this.height >= obj.y &&
       // this.y + this.offsetY <= obj.y + obj.height &&
       // obj.onCollisionCourse // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
     );
@@ -131,14 +139,18 @@ class MovableObject {
     this.energy -= 5;
     if (this.energy < 0) {
       this.energy = 0;
+    } else {
+      this.lastHit = new Date().getTime();
     }
   }
 
   isHurt() {
-    //
+    let timepassed = new Date().getTime() - this.lastHit; // difference in ms
+    timepassed = timepassed / 1000; // difference in s
+    return timepassed < 1;
   }
 
   isDead() {
-    return this.energy == 0;
+    return this.energy == 0 && !this.isDeadAnimationPlaying;
   }
 }
