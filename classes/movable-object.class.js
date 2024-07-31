@@ -1,27 +1,12 @@
 class MovableObject extends DrawableObject {
-  imageCache = [];
   speed = 1.5;
-  otherDirection = false;
   speedY = 0;
   acceleration = 1.5;
-  jumpStarted = false;
   energy = 100;
   lastHit = 0;
   lifebar = 100;
-
-  drawBorder(ctx) {
-    if (
-      this instanceof Character ||
-      this instanceof Chicken ||
-      this instanceof Endboss
-    ) {
-      ctx.beginPath();
-      ctx.lineWidth = "2";
-      ctx.strokeStyle = "blue";
-      ctx.rect(this.x, this.y, this.width, this.height);
-      ctx.stroke();
-    }
-  }
+  otherDirection = false;
+  jumpStarted = false;
 
   drawOffsetBorder(ctx) {
     if (this instanceof Character) {
