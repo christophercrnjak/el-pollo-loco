@@ -43,4 +43,19 @@ class DrawableObject {
       ctx.stroke();
     }
   }
+
+  drawOffsetBorder(ctx) {
+    if (this instanceof Character) {
+      ctx.beginPath();
+      ctx.lineWidth = "2";
+      ctx.strokeStyle = "red";
+      ctx.rect(
+        this.offset.left,
+        this.offset.top,
+        this.offset.right,
+        this.offset.bottom
+      );
+      ctx.stroke();
+    }
+  }
 }
