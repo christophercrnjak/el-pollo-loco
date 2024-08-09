@@ -1,4 +1,4 @@
-class StatusBar extends DrawableObject {
+class StatusBarHealth extends DrawableObject {
   IMAGES = [
     "img/7_statusbars/1_statusbar/2_statusbar_health/blue/0.png",
     "img/7_statusbars/1_statusbar/2_statusbar_health/blue/20.png",
@@ -9,7 +9,7 @@ class StatusBar extends DrawableObject {
   ];
 
   percentage = 100;
-  x = 40;
+  x = 10;
   y = 0;
   width = 200;
   height = 60;
@@ -40,20 +40,5 @@ class StatusBar extends DrawableObject {
     } else {
       return 0;
     }
-
-    // switch (this.percentage) {
-    //   case 100:
-    //     return 5;
-    //   case 80:
-    //     return 5;
-    //   case 60:
-    //     return 5;
-    //   case 40:
-    //     return 5;
-    //   case 20:
-    //     return 5;
-    //   case 0:
-    //     return 5;
-    // }
   }
 }
