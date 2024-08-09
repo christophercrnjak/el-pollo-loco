@@ -26,10 +26,7 @@ class MovableObject extends DrawableObject {
 
   applyGravity() {
     setInterval(() => {
-      if (
-        (this.isAboveGround() && this.jumpStarted) ||
-        (this.speedY > 0 && !this.jumpStarted)
-      ) {
+      if ((this.isAboveGround() && this.jumpStarted) || (this.speedY > 0 && !this.jumpStarted)) {
         this.jumpStarted = true;
         this.y -= this.speedY;
         this.speedY -= this.acceleration;

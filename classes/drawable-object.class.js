@@ -31,11 +31,7 @@ class DrawableObject {
   }
 
   drawBorder(ctx) {
-    if (
-      this instanceof Character ||
-      this instanceof Chicken ||
-      this instanceof Endboss
-    ) {
+    if (this instanceof Character || this instanceof Chicken || this instanceof Endboss) {
       ctx.beginPath();
       ctx.lineWidth = "2";
       ctx.strokeStyle = "blue";
@@ -49,12 +45,7 @@ class DrawableObject {
       ctx.beginPath();
       ctx.lineWidth = "2";
       ctx.strokeStyle = "red";
-      ctx.rect(
-        this.offset.left,
-        this.offset.top,
-        this.offset.right,
-        this.offset.bottom
-      );
+      ctx.rect(this.offset.left, this.offset.top, this.offset.right, this.offset.bottom);
       ctx.stroke();
     }
   }
