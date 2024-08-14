@@ -47,31 +47,8 @@ class MovableObject extends DrawableObject {
     }, 100 / 50);
   }
 
-  isAboveGround() {
-    return this.y < 185;
-  }
-
-  isWalking() {
-    return this.world.keyboard.RIGHT || this.world.keyboard.LEFT;
-  }
-
   jump() {
     this.speedY = 25;
-  }
-
-  isColliding(obj) {
-    return (
-      this.x + this.width > obj.x &&
-      this.y + this.height > obj.y &&
-      this.x < obj.x &&
-      this.y < obj.y + obj.height
-
-      // this.x + this.width - this.offset.right > obj.x // + obj.offset.left &&
-      // this.y + this.height - this.offset.bottom>= obj.y &&
-      // this.x <= obj.x + obj.width &&
-      // this.y + this.offsetY <= obj.y + obj.height &&
-      // obj.onCollisionCourse // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
-    );
   }
 
   hit() {
@@ -91,5 +68,28 @@ class MovableObject extends DrawableObject {
 
   isDead() {
     return this.energy == 0 && !this.isDeadAnimationPlaying;
+  }
+
+  isAboveGround() {
+    return this.y < 185;
+  }
+
+  isWalking() {
+    return this.world.keyboard.RIGHT || this.world.keyboard.LEFT;
+  }
+
+  isColliding(obj) {
+    return (
+      this.x + this.width > obj.x &&
+      this.y + this.height > obj.y &&
+      this.x < obj.x &&
+      this.y < obj.y + obj.height
+
+      // this.x + this.width - this.offset.right > obj.x // + obj.offset.left &&
+      // this.y + this.height - this.offset.bottom>= obj.y &&
+      // this.x <= obj.x + obj.width &&
+      // this.y + this.offsetY <= obj.y + obj.height &&
+      // obj.onCollisionCourse // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
+    );
   }
 }
