@@ -50,7 +50,6 @@ window.addEventListener("keyup", (e) => {
       break;
     case "d":
       keyboard.D = false;
-      console.log("D wieder auf false");
     default:
       break;
   }
