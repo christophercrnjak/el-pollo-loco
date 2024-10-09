@@ -6,7 +6,6 @@ class MovableObject extends DrawableObject {
   lastHit = 0;
   lifebar = 100;
   otherDirection = false;
-  jumpStarted = false;
 
   moveRight() {
     this.x += this.speed;
@@ -26,15 +25,9 @@ class MovableObject extends DrawableObject {
 
   applyGravity() {
     setInterval(() => {
-      if ((this.isAboveGround() && this.jumpStarted) || (this.speedY > 0 && !this.jumpStarted)) {
-        this.jumpStarted = true;
+      if (this.isAboveGround() || this.speedY > 0) {
         this.y -= this.speedY;
         this.speedY -= this.acceleration;
-      }
-      if (this.y >= 185) {
-        this.y = 185;
-        this.speedY = 0;
-        this.jumpStarted = false;
       }
     }, 1000 / 50);
   }
