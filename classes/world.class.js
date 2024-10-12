@@ -37,6 +37,7 @@ class World {
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.throwableObjects);
+    this.addObjectsToMap(this.level.coins);
     this.addToMap(this.character);
 
     this.ctx.translate(-this.camera_x, 0);
@@ -92,10 +93,24 @@ class World {
   }
 
   checkCollisions() {
+    this.checkEnemyCollisions();
+    this.checkCoinCollisions;
+  }
+
+  checkEnemyCollisions() {
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy)) {
         this.character.hit();
         this.statusBarHealth.setPercentage(this.character.energy);
+      }
+    });
+  }
+
+  checkCoinCollisions() {
+    this.level.coins.forEach((coin, index) => {
+      if (this.character.isColliding(coin)) {
+        this.level.coins.splice(index, 1); // Münze einsammeln und entfernen
+        this.increaseScore(); // Punkte hinzufügen
       }
     });
   }
