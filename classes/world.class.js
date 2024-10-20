@@ -10,6 +10,7 @@ class World {
   statusBarBottle = new StatusBarBottle();
   statusBarEndboss = new StatusBarEndboss();
   throwableObjects = [];
+  score;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -26,14 +27,6 @@ class World {
     this.ctx.translate(this.camera_x, 0);
 
     this.addObjectsToMap(this.level.backgroundObjects);
-
-    this.ctx.translate(-this.camera_x, 0);
-    this.addToMap(this.statusBarHealth);
-    this.addToMap(this.statusBarCoin);
-    this.addToMap(this.statusBarBottle);
-    this.addToMap(this.statusBarEndboss);
-    this.ctx.translate(this.camera_x, 0);
-
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.throwableObjects);
@@ -41,6 +34,11 @@ class World {
     this.addToMap(this.character);
 
     this.ctx.translate(-this.camera_x, 0);
+
+    this.addToMap(this.statusBarHealth);
+    this.addToMap(this.statusBarCoin);
+    this.addToMap(this.statusBarBottle);
+    this.addToMap(this.statusBarEndboss);
 
     let self = this;
     requestAnimationFrame(function () {
@@ -94,7 +92,7 @@ class World {
 
   checkCollisions() {
     this.checkEnemyCollisions();
-    this.checkCoinCollisions;
+    this.checkCoinCollisions();
   }
 
   checkEnemyCollisions() {
@@ -120,5 +118,10 @@ class World {
       let bottle = new ThrowableObject(this.character.x, this.character.y);
       this.throwableObjects.push(bottle);
     }
+  }
+
+  increaseScore() {
+    this.score += 10; // Beispiel: 10 Punkte pro Münze
+    this.statusBarCoin.setPercentage(this.score); // Optional: Anzeige der Punkte aktualisieren
   }
 }
