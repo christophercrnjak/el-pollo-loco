@@ -10,7 +10,7 @@ class World {
   statusBarBottle = new StatusBarBottle();
   statusBarEndboss = new StatusBarEndboss();
   throwableObjects = [];
-  score;
+  score = 0;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -121,7 +121,7 @@ class World {
   }
 
   increaseScore() {
-    this.score += 10; // Beispiel: 10 Punkte pro Münze
+    this.score += 20; // Beispiel: 10 Punkte pro Münze
     this.statusBarCoin.setPercentage(this.score); // Optional: Anzeige der Punkte aktualisieren
   }
 }
