@@ -50,7 +50,15 @@ class DrawableObject {
       ctx.beginPath();
       ctx.lineWidth = "2";
       ctx.strokeStyle = "red";
-      ctx.rect(this.offset.left, this.offset.top, this.offset.right, this.offset.bottom);
+
+      // Verwende x, y, width, height, um den Rahmen am Charakter auszurichten
+      ctx.rect(
+        this.x + this.offset.left,
+        this.y + this.offset.top,
+        this.width - this.offset.right - this.offset.left,
+        this.height - this.offset.bottom - this.offset.top
+      );
+
       ctx.stroke();
     }
   }
