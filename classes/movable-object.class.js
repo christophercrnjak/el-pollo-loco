@@ -76,7 +76,7 @@ class MovableObject extends DrawableObject {
   }
 
   isDead() {
-    return this.energy == 0 && !this.isDeadAnimationPlaying;
+    return this.energy <= 0;
   }
 
   isAboveGround() {

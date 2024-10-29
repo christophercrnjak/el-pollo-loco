@@ -90,11 +90,20 @@ class Character extends MovableObject {
     setInterval(() => {
       if (this.isDead()) {
         console.log("Character is dead!");
-        // this.img = this.imageCache[this.IMAGES_DYING[0]];
-        this.playAnimation(this.IMAGES_DYING);
+        this.isHurtAnimationPlaying = false;
         this.isDeadAnimationPlaying = true;
-        this.loadImage(this.IMAGES_DYING[this.IMAGES_DYING.length - 1]); // Letztes Bild setzen
-      } else if (this.isHurt() && !this.isHurtAnimationPlaying) {
+        this.playAnimation(this.IMAGES_DYING);
+
+        // Setze Standbild nach Ablauf der Animation
+        setTimeout(() => {
+          this.loadImage(this.IMAGES_DYING[this.IMAGES_DYING.length - 1]);
+        }, this.IMAGES_DYING.length * 100); // Zeit basierend auf Animationslänge
+      } else if (
+        !this.isDead() &&
+        // !this.isDeadAnimationPlaying() &&
+        this.isHurt() &&
+        !this.isHurtAnimationPlaying
+      ) {
         this.playHurtAnimation();
       } else if (!this.isDead() && this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
