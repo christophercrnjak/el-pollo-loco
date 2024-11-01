@@ -24,28 +24,57 @@ class MovableObject extends DrawableObject {
     this.currentImage++;
   }
 
-  applyGravity() {
+  CharacterGravity() {
     setInterval(() => {
-      if ((this.isAboveGround() && this.jumpStarted) || (this.speedY > 0 && !this.jumpStarted)) {
-        this.jumpStarted = true;
-        this.y -= this.speedY;
-        this.speedY -= this.acceleration;
+      if (this.canCharacterJump()) {
+        this.CharIsJumping();
       }
-      if (this.y >= 185) {
-        this.y = 185;
-        this.speedY = 0;
-        this.jumpStarted = false;
+
+      if (this.isCharBelowBottom()) {
+        this.ResetPositionOfChar();
       }
     }, 1000 / 50);
+  }
+
+  canCharacterJump() {
+    return (this.isAboveGround() && this.jumpStarted) || (this.speedY > 0 && !this.jumpStarted);
+  }
+
+  CharIsJumping() {
+    this.jumpStarted = true;
+    this.y -= this.speedY;
+    this.speedY -= this.acceleration;
+  }
+
+  isCharBelowBottom() {
+    return this.y >= 185;
+  }
+
+  ResetPositionOfChar() {
+    this.y = 185;
+    this.speedY = 0;
+    this.jumpStarted = false;
   }
 
   applyGravityForBottle() {
     setInterval(() => {
       if (this.isAboveGround() || this.speedY > 0) {
-        this.y -= this.speedY;
-        this.speedY -= this.acceleration;
+        this.throwBottle();
       }
     }, 1000 / 50);
+  }
+
+  isAboveGround() {
+    if (this instanceof ThrowableObject) {
+      return true;
+    } else {
+      return this.y < 185;
+    }
+  }
+
+  throwBottle() {
+    this.y -= this.speedY;
+    this.speedY -= this.acceleration;
   }
 
   checkIfJumping() {
@@ -77,14 +106,6 @@ class MovableObject extends DrawableObject {
 
   isDead() {
     return this.energy <= 0;
-  }
-
-  isAboveGround() {
-    if (this instanceof ThrowableObject) {
-      return true;
-    } else {
-      return this.y < 185;
-    }
   }
 
   isWalking() {

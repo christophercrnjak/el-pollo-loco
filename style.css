@@ -3,6 +3,10 @@
   src: url("fonts/Zabars.ttf");
 }
 
+* {
+  color: black;
+}
+
 body {
   min-height: 100vh;
   display: flex;
@@ -12,12 +16,12 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  color: black;
   font-family: "zabars", Arial, Helvetica, sans-serif;
 }
 
 h1 {
-  color: black; /* Stelle sicher, dass die Farbe explizit auf schwarz gesetzt ist */
+  font-size: 56px;
+  color: black;
 }
 
 canvas {

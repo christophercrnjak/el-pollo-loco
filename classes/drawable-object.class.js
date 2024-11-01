@@ -56,7 +56,6 @@ class DrawableObject {
       ctx.lineWidth = "2";
       ctx.strokeStyle = "red";
 
-      // Verwende x, y, width, height, um den Rahmen am Charakter auszurichten
       ctx.rect(
         this.x + this.offset.left,
         this.y + this.offset.top,
