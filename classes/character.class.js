@@ -93,17 +93,10 @@ class Character extends MovableObject {
         this.isHurtAnimationPlaying = false;
         this.isDeadAnimationPlaying = true;
         this.playAnimation(this.IMAGES_DYING);
-
-        // Setze Standbild nach Ablauf der Animation
-        setTimeout(() => {
-          this.loadImage(this.IMAGES_DYING[this.IMAGES_DYING.length - 1]);
-        }, this.IMAGES_DYING.length * 100); // Zeit basierend auf Animationslänge
-      } else if (
-        !this.isDead() &&
-        // !this.isDeadAnimationPlaying() &&
-        this.isHurt() &&
-        !this.isHurtAnimationPlaying
-      ) {
+        if (this.currentImage % this.IMAGES_DYING.length == 6) {
+          this.currentImage--;
+        }
+      } else if (!this.isDead() && this.isHurt() && !this.isHurtAnimationPlaying) {
         this.playHurtAnimation();
       } else if (!this.isDead() && this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
