@@ -10,7 +10,8 @@ class World {
   statusBarBottle = new StatusBarBottle();
   statusBarEndboss = new StatusBarEndboss();
   throwableObjects = [];
-  score = 0;
+  coinScore = 0;
+  bottleScore = 0;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -31,6 +32,7 @@ class World {
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.throwableObjects);
     this.addObjectsToMap(this.level.coins);
+    this.addObjectsToMap(this.level.bottles);
     this.addToMap(this.character);
 
     this.ctx.translate(-this.camera_x, 0);
@@ -47,9 +49,7 @@ class World {
   }
 
   addObjectsToMap(objects) {
-    objects.forEach((o) => {
-      this.addToMap(o);
-    });
+    objects.forEach((o) => this.addToMap(o));
   }
 
   addToMap(mo) {
@@ -93,6 +93,7 @@ class World {
   checkCollisions() {
     this.checkEnemyCollisions();
     this.checkCoinCollisions();
+    this.checkBottleCollisions();
   }
 
   checkEnemyCollisions() {
@@ -107,10 +108,15 @@ class World {
   checkCoinCollisions() {
     this.level.coins.forEach((coin, index) => {
       if (this.character.isColliding(coin)) {
-        this.level.coins.splice(index, 1); // Münze einsammeln und entfernen
-        this.increaseScore(); // Punkte hinzufügen
+        this.level.coins.splice(index, 1);
+        this.increaseCoinScore();
       }
     });
+  }
+
+  increaseCoinScore() {
+    this.coinScore += 20;
+    this.statusBarCoin.setPercentage(this.coinScore);
   }
 
   throwObjects() {
@@ -120,8 +126,17 @@ class World {
     }
   }
 
-  increaseScore() {
-    this.score += 20; // Beispiel: 10 Punkte pro Münze
-    this.statusBarCoin.setPercentage(this.score); // Optional: Anzeige der Punkte aktualisieren
+  checkBottleCollisions() {
+    this.level.bottles.forEach((bottle, index) => {
+      if (this.character.isColliding(bottle)) {
+        this.level.bottles.splice(index, 1);
+        this.increaseBottleScore();
+      }
+    });
+  }
+
+  increaseBottleScore() {
+    this.bottleScore += 20;
+    this.statusBarBottle.setPercentage(this.bottleScore);
   }
 }

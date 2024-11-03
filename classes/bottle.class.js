@@ -1,14 +1,16 @@
 class Bottle extends CollectableObject {
   offset = {
-    left: 45,
-    top: 45,
-    right: 45,
-    bottom: 45,
+    left: 22,
+    top: 60,
+    right: 22,
+    bottom: 60,
   };
+  height = 70;
+  width = 60;
 
   constructor() {
-    let x = Math.random() * 2000; // Zufällige X-Position auf der Karte
-    let y = Math.random() * 400; // Zufällige Y-Position
-    super("img/6_salsa_bottle/salsa_bottle.png", x, y); // Bild und Position setzen
+    let x = Math.random() * 2000;
+    let y = 350;
+    super("img/6_salsa_bottle/salsa_bottle.png", x, y);
   }
 }
