@@ -24,23 +24,23 @@ class MovableObject extends DrawableObject {
     this.currentImage++;
   }
 
-  CharacterGravity() {
+  applyGravityForChar() {
     setInterval(() => {
-      if (this.canCharacterJump()) {
-        this.CharIsJumping();
+      if (this.canCharJump()) {
+        this.charIsJumping();
       }
 
       if (this.isCharBelowBottom()) {
-        this.ResetPositionOfChar();
+        this.resetPositionOfChar();
       }
     }, 1000 / 50);
   }
 
-  canCharacterJump() {
+  canCharJump() {
     return (this.isAboveGround() && this.jumpStarted) || (this.speedY > 0 && !this.jumpStarted);
   }
 
-  CharIsJumping() {
+  charIsJumping() {
     this.jumpStarted = true;
     this.y -= this.speedY;
     this.speedY -= this.acceleration;
@@ -50,7 +50,7 @@ class MovableObject extends DrawableObject {
     return this.y >= 185;
   }
 
-  ResetPositionOfChar() {
+  resetPositionOfChar() {
     this.y = 185;
     this.speedY = 0;
     this.jumpStarted = false;
