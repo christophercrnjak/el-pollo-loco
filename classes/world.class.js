@@ -96,11 +96,17 @@ class World {
     this.checkBottleCollisions();
   }
 
+  // working on die-possibility for enemies - worked in chick.class.js
   checkEnemyCollisions() {
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy)) {
-        this.character.hit();
-        this.statusBarHealth.setPercentage(this.character.energy);
+        if (this.character.isFalling() && this.character.y < enemy.y) {
+          enemy.die();
+          this.level.enemies.splice(index, 1);
+        } else {
+          this.character.hit();
+          this.statusBarHealth.setPercentage(this.character.energy);
+        }
       }
     });
   }
