@@ -100,7 +100,8 @@ class World {
   checkEnemyCollisions() {
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy)) {
-        if (this.character.isFalling() && this.character.y < enemy.y) {
+        if (this.character.isFalling()) {
+          // && this.character.y < enemy.y
           enemy.die();
           this.level.enemies.splice(index, 1);
         } else {

@@ -126,4 +126,8 @@ class Character extends MovableObject {
   isJumping() {
     return this.world.keyboard.SPACE && !this.jumpStarted;
   }
+
+  isFalling() {
+    return this.speedY > 0;
+  }
 }
