@@ -7,7 +7,6 @@ class Chicken extends MovableObject {
     "./img/3_enemies_chicken/chicken_normal/1_walk/2_w.png",
     "./img/3_enemies_chicken/chicken_normal/1_walk/3_w.png",
   ];
-  chicken_sound = new Audio("./audio/chicken.mp3");
   offset = {
     left: 0,
     top: 5,
@@ -25,14 +24,9 @@ class Chicken extends MovableObject {
   }
 
   animate() {
-    this.chicken_sound.pause();
     setInterval(() => {
       this.moveLeft();
       this.playAnimation(this.IMAGES_WALKING);
     }, 100);
-    this.chickenSoundOn();
-  }
-  chickenSoundOn() {
-    this.chicken_sound.play();
   }
 }

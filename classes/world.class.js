@@ -100,16 +100,21 @@ class World {
   checkEnemyCollisions() {
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy)) {
-        if (this.character.isFalling()) {
-          // && this.character.y < enemy.y
+        if (this.character.isAboveGround()) {
           enemy.die();
-          this.level.enemies.splice(index, 1);
+          setTimeout(() => {
+            this.remove(index);
+          }, 500);
         } else {
           this.character.hit();
           this.statusBarHealth.setPercentage(this.character.energy);
         }
       }
     });
+  }
+
+  remove(index) {
+    this.level.enemies.splice(index, 1);
   }
 
   checkCoinCollisions() {

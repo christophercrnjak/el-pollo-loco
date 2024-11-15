@@ -7,6 +7,7 @@ class MovableObject extends DrawableObject {
   lifebar = 100;
   otherDirection = false;
   jumpStarted = false;
+  ground = 185;
 
   moveRight() {
     this.x += this.speed;
@@ -68,7 +69,7 @@ class MovableObject extends DrawableObject {
     if (this instanceof ThrowableObject) {
       return true;
     } else {
-      return this.y < 185;
+      return this.y < this.ground;
     }
   }
 
