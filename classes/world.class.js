@@ -98,7 +98,7 @@ class World {
 
   // working on die-possibility for enemies - worked in chick.class.js
   checkEnemyCollisions() {
-    this.level.enemies.forEach((enemy) => {
+    this.level.enemies.forEach((enemy, index) => {
       if (this.character.isColliding(enemy)) {
         if (this.character.isAboveGround()) {
           enemy.die();

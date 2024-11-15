@@ -1,4 +1,4 @@
-class Chick extends MovableObject {
+class Chick extends Enemy {
   height = 60;
   width = 70;
   y = 367;
@@ -24,21 +24,7 @@ class Chick extends MovableObject {
     this.x = 350 + Math.random() * 2400;
     this.speed = this.speed + Math.random() * 3 * this.speed;
     this.loadImages(this.IMAGES_WALKING);
+    this.loadImages(this.IMAGES_DYING);
     this.animate();
-  }
-
-  // NEW to try kill and remove an enemy
-  die() {
-    this.playAnimation(this.IMAGES_DYING);
-  }
-
-  animate() {
-    setInterval(() => {
-      this.moveLeft();
-      this.playAnimation(this.IMAGES_WALKING);
-    }, 100);
-  }
-  chickenSoundOn() {
-    this.chicken_sound.play();
   }
 }

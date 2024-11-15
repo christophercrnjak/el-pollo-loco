@@ -23,6 +23,7 @@ class DrawableObject {
       let img = new Image();
       img.src = path;
       this.imageCache[path] = img;
+      // console.log("Loaded image:", path, "Cached:", this.imageCache[path]);
     });
   }
 
