@@ -21,22 +21,25 @@ class StatusBarBottle extends DrawableObject {
   }
 
   setPercentage(score) {
-    this.percentage = Math.min(score, 100); // Maximal 100 Punkte
+    this.percentage = Math.min(score, 100);
+    console.log("Set percentage:", this.percentage);
     let path = this.IMAGES[this.calcImageIndex()];
+    console.log("Image path:", path);
     this.img = this.imageCache[path];
-    console.log(this.img);
+    console.log("Image loaded:", this.img);
   }
 
   calcImageIndex() {
+    console.log("Percentage:", this.percentage);
     if (this.percentage == 100) {
       return 5;
-    } else if (this.percentage > 80) {
+    } else if (this.percentage >= 80) {
       return 4;
-    } else if (this.percentage > 60) {
+    } else if (this.percentage >= 60) {
       return 3;
-    } else if (this.percentage > 40) {
+    } else if (this.percentage >= 40) {
       return 2;
-    } else if (this.percentage > 20) {
+    } else if (this.percentage >= 20) {
       return 1;
     } else {
       return 0;
