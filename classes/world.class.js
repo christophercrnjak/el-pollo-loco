@@ -10,8 +10,8 @@ class World {
   statusBarBottle = new StatusBarBottle();
   statusBarEndboss = new StatusBarEndboss();
   throwableObjects = [];
-  coinScore = 0;
-  bottleScore = 0;
+  collectedCoins = 0;
+  collectedBottles = 0;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -84,27 +84,25 @@ class World {
   }
 
   run() {
-    setInterval(() => {
-      this.checkCollisions();
-      this.throwObjects();
-    }, 200);
+    this.checkCollisions();
+    this.throwObjects();
   }
 
   checkCollisions() {
-    this.checkEnemyCollisions();
-    this.checkCoinCollisions();
-    this.checkBottleCollisions();
+    setInterval(() => {
+      this.checkEnemyCollisions();
+      this.checkCoinCollisions();
+      this.checkBottleCollisions();
+    }, 50);
   }
 
-  // working on die-possibility for enemies - worked in chick.class.js
   checkEnemyCollisions() {
     this.level.enemies.forEach((enemy, index) => {
       if (this.character.isColliding(enemy)) {
         if (this.character.isAboveGround()) {
           enemy.die();
-          setTimeout(() => {
-            this.remove(index);
-          }, 500);
+          this.remove(index);
+          this.character.bounce();
         } else {
           this.character.hit();
           this.statusBarHealth.setPercentage(this.character.energy);
@@ -114,41 +112,48 @@ class World {
   }
 
   remove(index) {
-    this.level.enemies.splice(index, 1);
+    setTimeout(() => {
+      this.level.enemies.splice(index, 1);
+    }, 400);
   }
 
   checkCoinCollisions() {
     this.level.coins.forEach((coin, index) => {
       if (this.character.isColliding(coin)) {
         this.level.coins.splice(index, 1);
-        this.increaseCoinScore();
+        this.collectedCoins++;
+        this.updateCoinStatusBar();
       }
     });
   }
 
-  increaseCoinScore() {
-    this.coinScore += 20;
-    this.statusBarCoin.setPercentage(this.coinScore);
+  throwObjects() {
+    setInterval(() => {
+      if (this.keyboard.D && this.collectedBottles > 0) {
+        let bottle = new ThrowableObject(this.character.x, this.character.y);
+        this.throwableObjects.push(bottle);
+        this.collectedBottles--;
+        this.statusBarBottle.setPercentage(this.collectedBottles * 20);
+      }
+    }, 200);
   }
 
-  throwObjects() {
-    if (this.keyboard.D) {
-      let bottle = new ThrowableObject(this.character.x, this.character.y);
-      this.throwableObjects.push(bottle);
-    }
+  updateCoinStatusBar() {
+    this.statusBarCoin.setPercentage(this.collectedCoins * 20);
   }
 
   checkBottleCollisions() {
     this.level.bottles.forEach((bottle, index) => {
       if (this.character.isColliding(bottle)) {
         this.level.bottles.splice(index, 1);
-        this.increaseBottleScore();
+        this.collectedBottles++;
+        console.log(this.collectedBottles);
+        this.updateBottleStatusBar();
       }
     });
   }
 
-  increaseBottleScore() {
-    this.bottleScore += 20;
-    this.statusBarBottle.setPercentage(this.bottleScore);
+  updateBottleStatusBar() {
+    this.statusBarBottle.setPercentage(this.collectedBottles * 20);
   }
 }

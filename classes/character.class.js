@@ -115,6 +115,10 @@ class Character extends MovableObject {
     }, this.IMAGES_HURTING.length * 30); // Setze die Verzögerung entsprechend der Dauer der Hurt-Animation
   }
 
+  bounce() {
+    this.speedY = 17;
+  }
+
   higherThanGround() {
     return;
   }
