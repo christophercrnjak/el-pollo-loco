@@ -147,13 +147,14 @@ class World {
       if (this.character.isColliding(bottle)) {
         this.level.bottles.splice(index, 1);
         this.collectedBottles++;
-        console.log(this.collectedBottles);
         this.updateBottleStatusBar();
       }
     });
   }
 
   updateBottleStatusBar() {
-    this.statusBarBottle.setPercentage(this.collectedBottles * 20);
+    this.statusBarBottle.setPercentage(
+      Math.round((this.collectedBottles / this.level.bottles.length) * 100)
+    );
   }
 }

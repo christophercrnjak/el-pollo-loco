@@ -22,11 +22,8 @@ class StatusBarBottle extends DrawableObject {
 
   setPercentage(score) {
     this.percentage = Math.min(score, 100);
-    console.log("Set percentage:", this.percentage);
     let path = this.IMAGES[this.calcImageIndex()];
-    console.log("Image path:", path);
     this.img = this.imageCache[path];
-    console.log("Image loaded:", this.img);
   }
 
   calcImageIndex() {
@@ -44,5 +41,8 @@ class StatusBarBottle extends DrawableObject {
     } else {
       return 0;
     }
+
+    // const index = Math.floor(this.percentage / 20); // Teile in Stufen von 20% ein
+    // return Math.min(index, this.IMAGES.length - 1); // Begrenze den Index auf das letzte Bild
   }
 }
