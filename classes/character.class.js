@@ -119,10 +119,6 @@ class Character extends MovableObject {
     this.speedY = 17;
   }
 
-  higherThanGround() {
-    return;
-  }
-
   isWalkingLeft() {
     return this.world.keyboard.LEFT && this.x > 0;
   }

@@ -28,7 +28,6 @@ class StatusBarBottle extends DrawableObject {
   }
 
   calcImageIndex() {
-    console.log("Percentage:", this.percentage);
     if (this.percentage == 100) {
       return 5;
     } else if (this.percentage >= 80) {
@@ -42,8 +41,5 @@ class StatusBarBottle extends DrawableObject {
     } else {
       return 0;
     }
-
-    // const index = Math.floor(this.percentage / 20); // Teile in Stufen von 20% ein
-    // return Math.min(index, this.IMAGES.length - 1); // Begrenze den Index auf das letzte Bild
   }
 }

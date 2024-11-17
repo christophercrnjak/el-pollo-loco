@@ -24,24 +24,35 @@ class World {
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
     this.ctx.translate(this.camera_x, 0);
+    this.drawBackground();
+    this.drawCharacter();
+    this.ctx.translate(-this.camera_x, 0);
+    this.drawStatusBars();
+    this.repeatDrawMethod();
+  }
 
+  drawBackground() {
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.throwableObjects);
     this.addObjectsToMap(this.level.coins);
     this.addObjectsToMap(this.level.bottles);
+  }
+
+  drawCharacter() {
     this.addToMap(this.character);
+  }
 
-    this.ctx.translate(-this.camera_x, 0);
-
+  drawStatusBars() {
     this.addToMap(this.statusBarHealth);
     this.addToMap(this.statusBarCoin);
     this.addToMap(this.statusBarBottle);
     this.addToMap(this.statusBarEndboss);
+  }
 
+  repeatDrawMethod() {
     let self = this;
     requestAnimationFrame(function () {
       self.draw();
@@ -93,6 +104,7 @@ class World {
       this.checkEnemyCollisions();
       this.checkCoinCollisions();
       this.checkBottleCollisions();
+      this.checkEndbossWithBottleCollisions();
     }, 50);
   }
 
@@ -101,17 +113,21 @@ class World {
       if (this.character.isColliding(enemy)) {
         if (this.character.isAboveGround()) {
           enemy.die();
-          this.remove(index);
+          this.removeEnemy(index);
           this.character.bounce();
         } else {
           this.character.hit();
-          this.statusBarHealth.setPercentage(this.character.energy);
+          this.updateHealthStatusBar();
         }
       }
     });
   }
 
-  remove(index) {
+  updateHealthStatusBar() {
+    this.statusBarHealth.setPercentage(this.character.energy);
+  }
+
+  removeEnemy(index) {
     setTimeout(() => {
       this.level.enemies.splice(index, 1);
     }, 400);
@@ -154,5 +170,25 @@ class World {
 
   updateBottleStatusBar() {
     this.statusBarBottle.setPercentage(Math.round(this.collectedBottles * 20));
+  }
+
+  checkEndbossWithBottleCollisions() {
+    this.level.bottles.forEach((bottle, index) => {
+      if (this.endboss().isColliding(bottle)) {
+        // bottle.explode(); // still to implement animation
+        this.removeBottle(index);
+        this.endboss().hit(); // needs to be implemented in endboss.class.js
+        this.endboss().hitAnimation();
+        this.statusBarEndboss.setPercentage(this.character.energy);
+      }
+    });
+  }
+
+  endboss() {
+    return this.level.enemies[1];
+  }
+
+  removeBottle(bottle) {
+    this.level.bottles.splice(bottle, 1);
   }
 }

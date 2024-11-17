@@ -91,18 +91,22 @@ class MovableObject extends DrawableObject {
   }
 
   hit() {
-    this.energy -= 1;
-    if (this.energy < 0) {
-      this.energy = 0;
-    } else {
-      this.lastHit = new Date().getTime();
+    if (!this.isHurt()) {
+      this.energy -= 20;
+      if (this.energy < 0) {
+        this.energy = 0;
+      }
+      this.saveTimeOfLastHit();
     }
   }
 
+  saveTimeOfLastHit() {
+    this.lastHit = new Date().getTime();
+  }
+
   isHurt() {
-    let timepassed = new Date().getTime() - this.lastHit; // difference in ms
-    timepassed = timepassed / 1000; // difference in s
-    return timepassed < 1;
+    let timepassed = new Date().getTime() - this.lastHit;
+    return timepassed < 1000;
   }
 
   isDead() {
