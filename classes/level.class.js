@@ -3,6 +3,7 @@ class Level {
   clouds;
   backgroundObjects;
   level_end_x = 3200;
+  level_end_y = 400;
   coins;
   bottles;
 

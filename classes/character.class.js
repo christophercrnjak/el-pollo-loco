@@ -89,7 +89,7 @@ class Character extends MovableObject {
   animateSprite() {
     setInterval(() => {
       if (this.isDead()) {
-        console.log("Character is dead!");
+        // console.log("Character is dead!");
         this.isHurtAnimationPlaying = false;
         this.isDeadAnimationPlaying = true;
         this.playAnimation(this.IMAGES_DYING);

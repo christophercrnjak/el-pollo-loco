@@ -104,7 +104,8 @@ class World {
 
   run() {
     this.checkCollisions();
-    this.throwObjects();
+    this.throwBottles();
+    this.removeThrowableObjects();
   }
 
   checkCollisions() {
@@ -151,7 +152,7 @@ class World {
     });
   }
 
-  throwObjects() {
+  throwBottles() {
     setInterval(() => {
       if (this.keyboard.D && this.collectedBottles > 0) {
         let bottle = new ThrowableObject(this.character.x, this.character.y);
@@ -160,6 +161,18 @@ class World {
         this.statusBarBottle.setPercentage(this.collectedBottles * 20);
       }
     }, 200);
+  }
+
+  removeThrowableObjects() {
+    setInterval(() => {
+      this.throwableObjects = this.throwableObjects.filter((bottle) => {
+        if (bottle.y >= this.level.level_end_y || bottle.x > this.level.level_end_x) {
+          console.log("Bottle removed due to out of bounds:", bottle.x, bottle.y);
+          return false;
+        }
+        return true;
+      });
+    }, 50);
   }
 
   updateCoinStatusBar() {
@@ -181,8 +194,11 @@ class World {
   }
 
   checkEndbossWithBottleCollisions() {
-    this.level.bottles.forEach((bottle, index) => {
+    this.throwableObjects.forEach((bottle, index) => {
       if (this.endboss().isColliding(bottle)) {
+        debugger;
+        console.log("Bottle position:", bottle.x, bottle.y);
+        console.log("Endboss position:", this.endboss().x, this.endboss().y);
         // bottle.explode(); // still to implement animation
         this.removeBottle(index);
         this.endboss().hit(); // needs to be implemented in endboss.class.js
