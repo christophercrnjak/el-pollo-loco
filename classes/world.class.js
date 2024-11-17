@@ -196,7 +196,6 @@ class World {
   checkEndbossWithBottleCollisions() {
     this.throwableObjects.forEach((bottle, index) => {
       if (this.endboss().isColliding(bottle)) {
-        debugger;
         console.log("Bottle position:", bottle.x, bottle.y);
         console.log("Endboss position:", this.endboss().x, this.endboss().y);
         // bottle.explode(); // still to implement animation
