@@ -153,8 +153,6 @@ class World {
   }
 
   updateBottleStatusBar() {
-    this.statusBarBottle.setPercentage(
-      Math.round((this.collectedBottles / this.level.bottles.length) * 100)
-    );
+    this.statusBarBottle.setPercentage(Math.round(this.collectedBottles * 20));
   }
 }

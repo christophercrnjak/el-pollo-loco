@@ -24,6 +24,7 @@ class StatusBarBottle extends DrawableObject {
     this.percentage = Math.min(score, 100);
     let path = this.IMAGES[this.calcImageIndex()];
     this.img = this.imageCache[path];
+    console.log(this.imageCache[path], this.img);
   }
 
   calcImageIndex() {
