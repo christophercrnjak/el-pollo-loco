@@ -78,8 +78,8 @@ class World {
 
     mo.draw(this.ctx);
 
-    // mo.drawBorder(this.ctx);
-    // mo.drawOffsetBorder(this.ctx);
+    mo.drawBorder(this.ctx);
+    mo.drawOffsetBorder(this.ctx);
 
     if (mo.otherDirection) {
       this.flipImageBack(mo);
@@ -105,6 +105,7 @@ class World {
   run() {
     this.checkCollisions();
     this.throwBottles();
+    this.checkEndbossWithBottleCollisions();
     this.removeThrowableObjects();
   }
 
@@ -113,7 +114,6 @@ class World {
       this.checkEnemyCollisions();
       this.checkCoinCollisions();
       this.checkBottleCollisions();
-      this.checkEndbossWithBottleCollisions();
     }, 50);
   }
 
@@ -167,7 +167,7 @@ class World {
     setInterval(() => {
       this.throwableObjects = this.throwableObjects.filter((bottle) => {
         if (bottle.y >= this.level.level_end_y || bottle.x > this.level.level_end_x) {
-          console.log("Bottle removed due to out of bounds:", bottle.x, bottle.y);
+          // console.log("Bottle removed due to out of bounds:", bottle.x, bottle.y);
           return false;
         }
         return true;
@@ -194,21 +194,21 @@ class World {
   }
 
   checkEndbossWithBottleCollisions() {
-    this.throwableObjects.forEach((bottle, index) => {
-      if (this.endboss().isColliding(bottle)) {
-        console.log("Bottle position:", bottle.x, bottle.y);
-        console.log("Endboss position:", this.endboss().x, this.endboss().y);
-        // bottle.explode(); // still to implement animation
-        this.removeBottle(index);
-        this.endboss().hit(); // needs to be implemented in endboss.class.js
-        this.endboss().hitAnimation();
-        this.statusBarEndboss.setPercentage(this.character.energy);
-      }
-    });
+    setInterval(() => {
+      this.throwableObjects.forEach((bottle, index) => {
+        if (this.endboss().isColliding(bottle)) {
+          // bottle.explode(); // still to implement animation
+          this.removeBottle(index);
+          this.endboss().hit(); // needs to be implemented in endboss.class.js
+          this.endboss().hitAnimation();
+          this.statusBarEndboss.setPercentage(this.character.energy);
+        }
+      });
+    }, 5);
   }
 
   endboss() {
-    return this.level.enemies[1];
+    return this.level.enemies[0];
   }
 
   removeBottle(bottle) {
