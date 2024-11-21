@@ -32,7 +32,7 @@ class Endboss extends MovableObject {
   animate() {
     setInterval(() => {
       this.playAnimation(this.IMAGES_WALKING);
-    }, 100);
+    }, 300);
   }
 
   animateSprite() {}

@@ -197,11 +197,11 @@ class World {
     setInterval(() => {
       this.throwableObjects.forEach((bottle, index) => {
         if (this.endboss().isColliding(bottle)) {
-          // bottle.explode(); // still to implement animation
+          // bottle.explode(); // still to implement animation later
           this.removeBottle(index);
           this.endboss().hit(); // needs to be implemented in endboss.class.js
-          this.endboss().hitAnimation();
-          this.statusBarEndboss.setPercentage(this.character.energy);
+          // this.endboss().hitAnimation();
+          this.statusBarEndboss.setPercentage(this.endboss().energy);
         }
       });
     }, 5);
