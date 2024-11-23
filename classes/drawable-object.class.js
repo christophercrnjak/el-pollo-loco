@@ -1,11 +1,11 @@
 class DrawableObject {
-  x = 100;
-  y = 250;
+  x;
+  y;
   img;
   imageCache = [];
   currentImage = 0;
-  height = 200;
-  width = 100;
+  height;
+  width;
   offset = {
     left: 0,
     top: 0,
@@ -23,7 +23,6 @@ class DrawableObject {
       let img = new Image();
       img.src = path;
       this.imageCache[path] = img;
-      // console.log("Loaded image:", path, "Cached:", this.imageCache[path]);
     });
   }
 

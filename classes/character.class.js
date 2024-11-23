@@ -33,30 +33,39 @@ class Character extends MovableObject {
     "img/2_character_pepe/5_dead/D-57.png",
   ];
 
-  height = 250;
-  y = 185;
-  speed = 3;
   world;
   walking_sound = new Audio("./audio/running.mp3");
-  offset = {
-    left: 15,
-    top: 95,
-    right: 15,
-    bottom: 10,
-  };
-
   isDeadAnimationPlaying = false;
   isHurtAnimationPlaying = false;
 
   constructor() {
     super();
+    this.setupCharacterAttributes();
+    this.loadCharacterImages();
+    this.applyGravityForChar();
+    this.animate();
+  }
+
+  setupCharacterAttributes() {
+    this.x = 100;
+    this.y = 185;
+    this.height = 250;
+    this.width = 100;
+    this.offset = {
+      left: 15,
+      top: 95,
+      right: 15,
+      bottom: 10,
+    };
+    this.speed = 30;
+  }
+
+  loadCharacterImages() {
     this.loadImage("./img/2_character_pepe/1_idle/idle/I-1.png");
     this.loadImages(this.IMAGES_WALKING);
     this.loadImages(this.IMAGES_JUMPING);
     this.loadImages(this.IMAGES_HURTING);
     this.loadImages(this.IMAGES_DYING);
-    this.applyGravityForChar();
-    this.animate();
   }
 
   animate() {

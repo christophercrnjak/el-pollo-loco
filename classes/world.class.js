@@ -78,8 +78,8 @@ class World {
 
     mo.draw(this.ctx);
 
-    mo.drawBorder(this.ctx);
-    mo.drawOffsetBorder(this.ctx);
+    // mo.drawBorder(this.ctx);
+    // mo.drawOffsetBorder(this.ctx);
 
     if (mo.otherDirection) {
       this.flipImageBack(mo);
