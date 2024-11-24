@@ -18,11 +18,31 @@ class MovableObject extends DrawableObject {
     this.x -= this.speed;
   }
 
-  playAnimation(images) {
+  playAnimation(images, holdLastImage = false) {
+    if (this.currentImage >= images.length && holdLastImage) {
+      this.img = this.imageCache[images[images.length - 1]];
+      return;
+    }
     let i = this.currentImage % images.length;
     let path = images[i];
     this.img = this.imageCache[path];
     this.currentImage++;
+  }
+
+  playDeathAnimation(IMAGES_DYING) {
+    let frameDuration = 500;
+    let animationIndex = 0;
+
+    let deathAnimationInterval = setInterval(() => {
+      if (animationIndex < IMAGES_DYING.length) {
+        let path = IMAGES_DYING[animationIndex];
+        this.img = this.imageCache[path];
+        animationIndex++;
+      } else {
+        clearInterval(deathAnimationInterval);
+        this.img = this.imageCache[IMAGES_DYING[IMAGES_DYING.length - 1]];
+      }
+    }, frameDuration);
   }
 
   applyGravityForChar() {
