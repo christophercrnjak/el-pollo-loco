@@ -43,7 +43,7 @@ class Character extends MovableObject {
     this.setupCharacterAttributes();
     this.loadCharacterImages();
     this.applyGravityForChar();
-    this.animate();
+    this.animateCharacter();
   }
 
   setupCharacterAttributes() {
@@ -57,18 +57,18 @@ class Character extends MovableObject {
       right: 15,
       bottom: 10,
     };
-    this.speed = 30;
+    this.speed = 3;
   }
 
   loadCharacterImages() {
-    this.loadImage("./img/2_character_pepe/1_idle/idle/I-1.png");
+    this.loadImage(this.IMAGES_WALKING[0]);
     this.loadImages(this.IMAGES_WALKING);
     this.loadImages(this.IMAGES_JUMPING);
     this.loadImages(this.IMAGES_HURTING);
     this.loadImages(this.IMAGES_DYING);
   }
 
-  animate() {
+  animateCharacter() {
     this.animateMovement();
     this.animateSprite();
   }

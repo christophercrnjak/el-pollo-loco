@@ -10,18 +10,30 @@ class Endboss extends MovableObject {
     "img/4_enemie_boss_chicken/2_alert/G12.png",
   ];
 
+  IMAGES_HURTING = [
+    "img/4_enemie_boss_chicken/4_hurt/G21.png",
+    "img/4_enemie_boss_chicken/4_hurt/G22.png",
+    "img/4_enemie_boss_chicken/4_hurt/G23.png",
+  ];
+
+  IMAGES_DYING = [
+    "img/4_enemie_boss_chicken/5_dead/G24.png",
+    "img/4_enemie_boss_chicken/5_dead/G25.png",
+    "img/4_enemie_boss_chicken/5_dead/G26.png",
+  ];
+
   currentImage = 0;
   isDeadAnimationPlaying = false;
   isHurtAnimationPlaying = false;
 
   constructor() {
     super();
-    this.setupCharacterAttributes();
-    this.loadCharacterImages();
-    this.animate();
+    this.setupEndbossAttributes();
+    this.loadEndbossImages();
+    this.animateEndboss();
   }
 
-  setupCharacterAttributes() {
+  setupEndbossAttributes() {
     this.x = 3000;
     this.y = -35;
     this.height = 500;
@@ -34,40 +46,34 @@ class Endboss extends MovableObject {
     };
   }
 
-  loadCharacterImages() {
+  loadEndbossImages() {
     this.loadImage(this.IMAGES_WALKING[0]);
     this.loadImages(this.IMAGES_WALKING);
+    this.loadImages(this.IMAGES_HURTING);
+    this.loadImages(this.IMAGES_DYING);
   }
 
-  animate() {
-    setInterval(() => {
-      this.playAnimation(this.IMAGES_WALKING);
-    }, 300);
-  }
-
-  animateSprite() {
+  animateEndboss() {
     setInterval(() => {
       if (this.isDead()) {
-        debugger;
         console.log("Endboss is dead!");
         this.isHurtAnimationPlaying = false;
         this.isDeadAnimationPlaying = true;
         this.playAnimation(this.IMAGES_DYING);
-        if (this.currentImage % this.IMAGES_DYING.length == 6) {
+        if (this.currentImage % this.IMAGES_DYING.length == 2) {
           this.currentImage--;
         }
       } else if (!this.isDead() && this.isHurt() && !this.isHurtAnimationPlaying) {
         this.playHurtAnimation();
+      } else {
+        this.playAnimation(this.IMAGES_WALKING);
       }
-    }, 1000 / 20);
+    }, 200);
   }
 
   playHurtAnimation() {
     this.isHurtAnimationPlaying = true;
     this.playAnimation(this.IMAGES_HURTING);
-    setTimeout(() => {
-      this.loadImage("./img/4_enemie_boss_chicken/5_dead/G26.png");
-      this.isHurtAnimationPlaying = false;
-    }, this.IMAGES_HURTING.length * 30); // Setze die Verzögerung entsprechend der Dauer der Hurt-Animation
+    this.isHurtAnimationPlaying = false;
   }
 }
