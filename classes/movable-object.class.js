@@ -30,7 +30,6 @@ class MovableObject extends DrawableObject {
   }
 
   playDeathAnimation(IMAGES_DYING) {
-    let frameDuration = 500;
     let animationIndex = 0;
 
     let deathAnimationInterval = setInterval(() => {
@@ -42,7 +41,7 @@ class MovableObject extends DrawableObject {
         clearInterval(deathAnimationInterval);
         this.img = this.imageCache[IMAGES_DYING[IMAGES_DYING.length - 1]];
       }
-    }, frameDuration);
+    }, 500);
   }
 
   applyGravityForChar() {
