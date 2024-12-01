@@ -41,7 +41,7 @@ class MovableObject extends DrawableObject {
         clearInterval(deathAnimationInterval);
         this.img = this.imageCache[IMAGES_DYING[IMAGES_DYING.length - 1]];
       }
-    }, 500);
+    }, 300);
   }
 
   applyGravityForChar() {
