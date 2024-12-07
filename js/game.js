@@ -3,7 +3,7 @@ let world;
 let keyboard = new Keyboard();
 
 function init() {
-  canvas = document.getElementById("canvas");
+  canvas = document.getElementById("GameCanvas");
   world = new World(canvas, keyboard);
 }
 
