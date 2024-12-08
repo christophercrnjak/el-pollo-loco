@@ -13,10 +13,26 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   rulesButton.addEventListener("click", () => {
-    alert("Rules:\n1. Collect coins.\n2. Avoid enemies.\n3. Reach the end of the level!");
+    splashScreen.style.display = "none";
+    const rulesDiv = document.getElementById("RulesDiv");
+    rulesDiv.style.display = "flex";
+  });
+
+  document.getElementById("BackButton").addEventListener("click", () => {
+    const rulesDiv = document.getElementById("RulesDiv");
+    rulesDiv.style.display = "none";
+    splashScreen.style.display = "flex";
   });
 
   impressum.addEventListener("click", () => {
-    alert("Game developed by Chris. Thanks for playing!");
+    splashScreen.style.display = "none";
+    const impressumDiv = document.getElementById("ImpressumDiv");
+    impressumDiv.style.display = "flex";
+  });
+
+  document.getElementById("BackFromImpressum").addEventListener("click", () => {
+    const impressumDiv = document.getElementById("ImpressumDiv");
+    impressumDiv.style.display = "none";
+    splashScreen.style.display = "flex";
   });
 });

@@ -17,11 +17,12 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   font-family: "zabars", Arial, Helvetica, sans-serif;
+  font-size: 24px;
 }
 
 h1 {
   font-size: 56px;
-  color: black;
+  color: black !important;
 }
 
 #GameCanvas {
@@ -52,4 +53,48 @@ h1 {
   border: none;
   border-radius: 16px;
   color: white;
+}
+
+button {
+  margin: 10px 0;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background-color: #ff9601;
+  border: none;
+  border-radius: 16px;
+  color: white;
+}
+
+#RulesDiv {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#ImpressumDiv {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#ImpressumDiv h2 {
+  margin-bottom: 20px;
 }
