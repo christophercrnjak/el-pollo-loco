@@ -152,13 +152,13 @@ class Character extends MovableObject {
         if (this.currentImage % this.IMAGES_DYING.length == 6) {
           this.currentImage--;
         }
-      } else if (!this.isDead() && this.isHurt() && !this.isHurtAnimationPlaying) {
+      } else if (this.isHurt() && !this.isHurtAnimationPlaying) {
         this.playHurtAnimation();
-      } else if (!this.isDead() && this.isAboveGround()) {
+      } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
-      } else if (!this.isDead() && this.isWalking()) {
+      } else if (this.isWalking()) {
         this.playAnimation(this.IMAGES_WALKING);
-      } else if (!this.isDead() && !this.isWalking() && !this.isJumping()) {
+      } else if (!this.isJumping()) {
         this.playAnimation(this.IMAGES_IDLE);
       }
     }, 1000 / 20);
