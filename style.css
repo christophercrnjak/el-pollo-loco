@@ -14,6 +14,7 @@ body {
   background-repeat: no-repeat;
   font-family: "zabars", Arial, Helvetica, sans-serif;
   font-size: 24px;
+  color: black;
 }
 
 h1 {
@@ -68,11 +69,65 @@ button {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.rules-container {
+  width: 70%;
+  max-width: 800px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 40px;
+  text-align: center;
+  color: white;
+}
+
+.rules-container h2 {
+  font-size: 2em;
+}
+
+.rules-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  height: 100%;
+}
+
+.section {
+  width: 45%; /* Beide Abschnitte nehmen jeweils 45% der Breite ein */
+  max-width: 400px; /* Begrenzte Breite für lesbare Abschnitte */
+}
+
+.section h3 {
+  margin-bottom: 15px;
+  font-size: 1.6em;
+}
+
+.section ul {
+  list-style-type: none;
+  padding: 0;
+  line-height: 1.8em;
+}
+
+#BackButton {
+  margin-top: 30px;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 16px;
+  background-color: #ff9601; /* Passend zu deinem Button-Stil */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#BackButton:hover {
+  background-color: #e57c01; /* Etwas dunkler für Hover-Effekt */
 }
 
 #ImpressumDiv {
@@ -84,12 +139,35 @@ button {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
+  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* Vertikale Zentrierung */
+  align-items: center; /* Horizontale Zentrierung */
   text-align: center;
 }
 
 #ImpressumDiv h2 {
   margin-bottom: 20px;
+  font-size: 2em; /* Einheitliches Design mit Rules */
+}
+
+#ImpressumDiv p {
+  max-width: 600px; /* Begrenzte Breite für bessere Lesbarkeit */
+  margin-bottom: 20px; /* Abstand zwischen den Absätzen */
+  line-height: 1.8em; /* Lesbare Zeilenhöhe */
+}
+
+#ImpressumDiv button {
+  padding: 10px 20px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 16px;
+  background-color: #ff9601;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#ImpressumDiv button:hover {
+  background-color: #e57c01;
 }
