@@ -64,13 +64,11 @@ button {
 
 #RulesDiv {
   display: none;
-  position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.2);
-  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -120,35 +118,27 @@ button {
   font-size: 1.2em;
   border: none;
   border-radius: 16px;
-  background-color: #ff9601; /* Passend zu deinem Button-Stil */
+  background-color: #ff9601;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-#BackButton:hover {
-  background-color: #e57c01; /* Etwas dunkler für Hover-Effekt */
-}
-
 #ImpressumDiv {
   display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  display: flex;
   flex-direction: column;
-  justify-content: center; /* Vertikale Zentrierung */
-  align-items: center; /* Horizontale Zentrierung */
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
 #ImpressumDiv h2 {
   margin-bottom: 20px;
-  font-size: 2em; /* Einheitliches Design mit Rules */
+  font-size: 2em;
 }
 
 #ImpressumDiv p {
@@ -168,6 +158,21 @@ button {
   transition: background-color 0.3s ease;
 }
 
-#ImpressumDiv button:hover {
+button:hover {
   background-color: #e57c01;
+}
+
+#EndScreenDiv {
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 720px;
+  height: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+}
+
+#EndScreenDiv h1 {
+  color: white;
 }

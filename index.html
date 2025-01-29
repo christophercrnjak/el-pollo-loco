@@ -29,6 +29,7 @@
     <script src="levels/level1.js"></script>
     <script src="classes/world.class.js"></script>
     <script src="js/startscreen.js"></script>
+    <script src="js/endscreen.js"></script>
     <script src="js/game.js"></script>
   </head>
 
@@ -38,7 +39,7 @@
     <div id="SplashScreen">
       <input id="StartButton" type="button" value="Start Game" />
       <input id="RulesButton" type="button" value="Instructions" />
-      <input id="Impressum" type="button" value="Impressum" />
+      <input id="ImpressumButton" type="button" value="Impressum" />
     </div>
 
     <div id="RulesDiv">
@@ -48,10 +49,10 @@
           <div class="section">
             <h3>Game Rules</h3>
             <ul>
-              <li>Collect <strong>coins</strong> to increase your score.</li>
-              <li>Pick up <strong>bottles</strong> to use as weapons.</li>
-              <li>Avoid <strong>enemies</strong> or lose health.</li>
-              <li>Throw bottles at the <strong>final boss</strong> to defeat it.</li>
+              <li>Collect coins to increase your score.</li>
+              <li>Pick up bottles to use as weapons.</li>
+              <li>Avoid enemies or lose health.</li>
+              <li>Throw bottles at the final boss to defeat it.</li>
               <li>Defeat the boss to win the game!</li>
               <li>Reach the end of the level to complete it.</li>
             </ul>
@@ -59,10 +60,10 @@
           <div class="section">
             <h3>Controls</h3>
             <ul>
-              <li><strong>Spacebar</strong>: Jump</li>
-              <li><strong>⬅</strong>: Move left</li>
-              <li><strong>➡</strong>: Move right</li>
-              <li><strong>Bottles</strong>: Throw bottles</li>
+              <li>Spacebar: Jump</li>
+              <li>⬅ : Move left</li>
+              <li>➡ : Move right</li>
+              <li>Bottles: Throw bottles</li>
             </ul>
           </div>
         </div>
@@ -74,6 +75,11 @@
       <h2>Credits</h2>
       <p>This game was developed by Christopher Crnjak.</p>
       <button id="BackFromImpressum">Back</button>
+    </div>
+
+    <div id="EndScreenDiv">
+      <h1 id="Headline">You won! / You lose!</h1>
+      <button id="EndScreenButton">Play again!</button>
     </div>
 
     <canvas id="GameCanvas" width="720" height="480"> </canvas>
