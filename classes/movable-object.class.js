@@ -40,6 +40,10 @@ class MovableObject extends DrawableObject {
       } else {
         clearInterval(deathAnimationInterval);
         this.img = this.imageCache[IMAGES_DYING[IMAGES_DYING.length - 1]];
+
+        if (this instanceof Endboss || this instanceof Character) {
+          this.showEndScreen();
+        }
       }
     }, 300);
   }
@@ -143,5 +147,17 @@ class MovableObject extends DrawableObject {
       this.x + this.offset.left <= obj.x + obj.width - obj.offset.right &&
       this.y + this.offset.top <= obj.y + obj.height - obj.offset.bottom
     );
+  }
+
+  showEndScreen() {
+    setTimeout(() => {
+      const endScreenDiv = document.getElementById("EndScreenDiv");
+      const gameCanvas = document.getElementById("GameCanvas");
+      const splashScreen = document.getElementById("SplashScreen");
+
+      endScreenDiv.style.display = "flex";
+      gameCanvas.style.display = "none";
+      splashScreen.style.display = "none";
+    }, 1500);
   }
 }

@@ -8,6 +8,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   background-image: url("img/desert.png");
   background-position: center;
   background-size: cover;
@@ -15,6 +16,7 @@ body {
   font-family: "zabars", Arial, Helvetica, sans-serif;
   font-size: 24px;
   color: black;
+  overflow: hidden;
 }
 
 h1 {
@@ -166,7 +168,7 @@ button:hover {
   background-color: rgba(0, 0, 0, 0.8);
   width: 720px;
   height: 480px;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
